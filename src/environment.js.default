@@ -1,4 +1,7 @@
 export default {
   debug: false,
-  testing: false
-}
+  testing: false,
+  recaptchaV2: '6LdO_r8SAAAAAOyxLMh9esOWkiJEv7HgmClbaO0i',
+  recaptchaV2Invisible: '6LeeZZcUAAAAAIXICrlnhA8-G347Dla1uTeENs12',
+  recaptcha: '6LfjX5cUAAAAAHOAROg4DJGNnw7UZMglNGYlxsua'
+};
