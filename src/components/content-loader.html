@@ -1,0 +1,90 @@
+<template>
+    <div class="container">
+        <div class="row">
+            <h1>Content Loader</h1>
+            <div class="container-fluid">
+                <div class="col-sm-12 col-2">
+                    <form>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkbox-animated" value="animated"
+                                checked.bind="checked">
+                            <label class="form-check-label" for="checkbox-animated">
+                                Animated
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="imageAsCircle" id="checkbox-imageAsCircle"
+                                checked.bind="checked">
+                            <label class="form-check-label" for="checkbox-imageAsCircle">
+                                Image as Circle
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="bulletsAsSquares" id="checkbox-bulletsAsSquares"
+                                checked.bind="checked">
+                            <label class="form-check-label" for="checkbox-bulletsAsSquares">
+                                List Bullets as Squares
+                            </label>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-sm-12 col-10">
+                    <div class="row justify-content-md-center">
+                        <div class="col-12">
+                            <h2>Custom Content Loader</h2>
+                        </div>
+                        <div>
+                            <svg-content-loader animate.bind="isAnimated" width="320" height="110">
+                                <rect fill="red" x="74" y="5" width="200" height="12"></rect>
+                                <rect fill="red" x="74" y="25" width="150" height="12"></rect>
+                                <rect fill="red" x="0" y="70" width="320" height="12"></rect>
+                                <rect fill="red" x="0" y="90" width="320" height="12"></rect>
+                                <circle id="Oval" cx="30" cy="30" r="30"></circle>
+                            </svg-content-loader>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12">
+                            <h2>Facebook Loader</h2>
+                        </div>
+                        <div class="col-12 col-md-8 col-xl-6">
+                            <svg-facebook-loader animate.bind="isAnimated" width="320" height="110" corner-radius="3"
+                                image-as-circle.bind="isImageAsCircle"></svg-facebook-loader>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12">
+                            <h2>Instagram Loader</h2>
+                        </div>
+                        <div class="col-12 col-md-8 col-xl-6">
+                            <svg-instagram-loader animate.bind="isAnimated" width="320" height="220" corner-radius="3"
+                                image-as-circle.bind="isImageAsCircle"></svg-instagram-loader>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>(Bullet) List Loader</h2>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <svg-list-loader animate.bind="isAnimated" width="320" height="110" corner-radius="3">
+                            </svg-list-loader>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <svg-list-loader animate.bind="isAnimated" width="320" height="110" bullets="1"
+                                bullets-as-squares.bind="isBulletsAsSquares"></svg-list-loader>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-12">
+                            <h2>Code Loader</h2>
+                        </div>
+                        <div class="col-12 col-md-8 col-xl-6">
+                            <svg-code-loader animate.bind="isAnimated" width="320" height="110"></svg-code-loader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
