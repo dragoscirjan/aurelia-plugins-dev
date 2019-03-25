@@ -1,0 +1,9 @@
+[submodule "plugins/aurelia-google-recaptcha"]
+	path = plugins/aurelia-google-recaptcha
+	url = https://github.com/dragoscirjan/aurelia-google-recaptcha
+[submodule "plugins/aurelia-content-loader"]
+	path = plugins/aurelia-content-loader
+	url = https://github.com/dragoscirjan/aurelia-content-loader
+[submodule "plugins/skeleton-plugin"]
+	path = plugins/skeleton-plugin
+	url = https://github.com/dragoscirjan/skeleton-plugin
