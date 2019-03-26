@@ -1,4 +1,4 @@
-import settings from '../environment';
+import environment from '../environment';
 
 import { inject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
@@ -13,9 +13,9 @@ export class Component {
   constructor(events) {
     this.events = events;
 
-    this.recaptchaV2 = settings.recaptchaV2;
-    this.recaptchaV2Invisible = settings.recaptchaV2Invisible;
-    this.recaptcha = settings.recaptcha;
+    this.recaptchaV2 = environment.siteKeys.v2;
+    this.recaptchaV2Invisible = environment.siteKeys.v2i;
+    this.recaptcha = environment.siteKeys.v3;
 
     setTimeout(() => {
       this.renderedWithDelay = true;

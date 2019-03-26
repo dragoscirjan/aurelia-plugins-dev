@@ -36,7 +36,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">  
-            <recaptcha-v2 id.bind="idV2C1" sitekey.bind="recaptchaV2" value.bind="notARobotV2C1"></recaptcha-v2>
+            <recaptcha-v2 id.bind="idV2C1" value.bind="notARobotV2C1"></recaptcha-v2>
             <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishResetV2C1()">reset</button>.</span>
             <span if.bind="notARobotV2C1">Not a Robot!</span>
             <span if.bind="!notARobotV2C1">Be gone Robot!</span>
@@ -46,7 +46,7 @@
             <span>Custom callback, see console.</span>
           </div>
           <div class="col-md-4" if.bind="renderedWithDelay">  
-            <recaptcha-v2 sitekey.bind="recaptchaV2" value.bind="notARobotV2C3"></recaptcha-v2>
+            <recaptcha-v2 value.bind="notARobotV2C3"></recaptcha-v2>
             <span>Delayed rendering (After at least one recaptcha was loaded).</span>
             <span if.bind="notARobotV2C3">Not a Robot!</span>
             <span if.bind="!notARobotV2C3">Be gone Robot!</span>
@@ -59,7 +59,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">  
-            <recaptcha-v2-invisible auto.bind="isAuto" sitekey.bind="recaptchaV2Invisible" size="invisible" value.bind="notARobotV2IC1"></recaptcha-v2-invisible>
+            <recaptcha-v2-invisible auto.bind="isAuto" size="invisible" value.bind="notARobotV2IC1"></recaptcha-v2-invisible>
             <span if.bind="notARobotV2IC1">Not a Robot!</span>
             <span if.bind="!notARobotV2IC1">Be gone Robot!</span>
           </div>
@@ -69,7 +69,7 @@
             <span>Custom callback, see console.</span>
           </div>
           <div class="col-md-4">  
-            <recaptcha-v2-invisible id.bind="idV2IC3" sitekey.bind="recaptchaV2Invisible" size="invisible" value.bind="notARobotV2IC3"></recaptcha-v2-invisible>
+            <recaptcha-v2-invisible id.bind="idV2IC3" size="invisible" value.bind="notARobotV2IC3"></recaptcha-v2-invisible>
             <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishExecuteV2IC3()">trigger</button>.</span>
             <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishResetV2IC3()">reset</button>.</span>
             <span if.bind="notARobotV2IC3">Not a Robot!</span>
@@ -83,7 +83,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">  
-            <recaptcha sitekey.bind="recaptcha" value.bind="notARobotv3_1" auto.bind="isAuto"></recaptcha>
+            <recaptcha value.bind="notARobotv3_1" auto.bind="isAuto"></recaptcha>
             <span if.bind="notARobotv3_1">Not a Robot!</span>
             <span if.bind="!notARobotv3_1">Be gone Robot!</span>
           </div>
@@ -94,7 +94,7 @@
             <span if.bind="!notARobotv3_2">Be gone Robot!</span>
           </div>
           <div class="col-md-4" if.bind="renderedWithDelay">  
-            <recaptcha sitekey.bind="recaptcha" value.bind="notARobotv3_3" action="social" auto="1"></recaptcha>
+            <recaptcha value.bind="notARobotv3_3" action="social" auto="1"></recaptcha>
             <span>Delayed rendering (After at least one recaptcha was loaded).</span>
             <span if.bind="notARobotv3_3">Not a Robot!</span>
             <span if.bind="!notARobotv3_3">Be gone Robot!</span>

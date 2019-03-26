@@ -26,7 +26,7 @@
     "@babel/preset-env": "^7.4.2",
     "aurelia-cli": "^1.0.0-beta.9",
     "aurelia-content-loader": "0.0.5",
-    "aurelia-google-recaptcha": "0.0.2",
+    "aurelia-google-recaptcha": "0.0.3",
     "aurelia-plugins-google-recaptcha": "^2.6.1",
     "aurelia-testing": "^1.0.0",
     "aurelia-tools": "^2.0.0",
