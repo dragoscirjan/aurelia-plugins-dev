@@ -1,16 +1,19 @@
 import environment from '../environment';
+import { Component } from '../resources/component';
 
 import { inject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
 
 @inject(EventAggregator)
-export class Component {
+export class GoogleRecaptcha extends Component {
   /** @var {Array} */
   checked = [];
 
   renderedWithDelay = false;
 
   constructor(events) {
+    super();
+
     this.events = events;
 
     this.recaptchaV2 = environment.siteKeys.v2;
