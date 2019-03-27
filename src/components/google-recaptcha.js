@@ -27,10 +27,10 @@ export class GoogleRecaptcha extends Component {
 
   bind(...args) {
     window.callbackIAmHumanV2C2 = () => {
-      console.log('I am human!');
+      console.log('I am human!'); // eslint-disable-line no-console
     };
     window.callbackIAmHumanV2IC2 = () => {
-      console.log('I am human (invisible)!');
+      console.log('I am human (invisible)!'); // eslint-disable-line no-console
     };
   }
 
