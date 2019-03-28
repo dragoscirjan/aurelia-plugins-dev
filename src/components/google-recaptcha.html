@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <h1>Google Recaptcha</h1>
         </div>
@@ -30,77 +30,109 @@
         </div>
       </div>
     </div>
-     <div class="container-fluid" if.bind="!isRemoveAll">
+     <div class="container" if.bind="!isRemoveAll">
         <div class="row">
+          <div class="col-md-12">
             <h2>Recaptcha V2</h2>
+            <hr>
+          </div>
         </div>
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-6">
             <div>
               <textarea class="codemirror"><recaptcha-v2
   id.bind="idV2C1"
   value.bind="notARobotV2C1"
+  callback-expired="callbackIExpiredV2C1"
 ></recaptcha-v2></textarea>
             </div>
 
             <recaptcha-v2 id.bind="idV2C1" value.bind="notARobotV2C1"></recaptcha-v2>
-            <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishResetV2C1()">reset</button>.</span>
             <span if.bind="notARobotV2C1">Not a Robot!</span>
             <span if.bind="!notARobotV2C1">Be gone Robot!</span>
+            <span>Custom <a href='javascript:;' click.trigger="publishResetV2C1()">reset</a>.</span>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <div>
               <textarea class="codemirror"><recaptcha-v2
-  sitekey.bind="recaptchaV2"
-  callback="callbackIAmHumanV2C2"
-></recaptcha-v2></textarea>
-            </div>
-
-            <recaptcha-v2 sitekey.bind="recaptchaV2" callback="callbackIAmHumanV2C2"></recaptcha-v2>
-            <span>Custom callback, see console.</span>
-          </div>
-          <div class="col-md-3">
-            <div>
-              <textarea class="codemirror"><recaptcha-v2
+  if.bind="renderedWithDelay"
   value.bind="notARobotV2C3"
 ></recaptcha-v2></textarea>
             </div>
 
+            <span>Applying delayed rendering (after at least one recaptcha was loaded) to see if it still works.</span>
             <recaptcha-v2 if.bind="renderedWithDelay" value.bind="notARobotV2C3"></recaptcha-v2>
-            <span>Delayed rendering (After at least one recaptcha was loaded).</span>
             <span if.bind="notARobotV2C3">Not a Robot!</span>
             <span if.bind="!notARobotV2C3">Be gone Robot!</span>
           </div>
-          <div class="col-md-3">
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
             <div>
               <textarea class="codemirror"><recaptcha-v2
-    value.bind="notARobotV2C3"
-  ></recaptcha-v2></textarea>
+  sitekey.bind="recaptchaV2"
+  callback="callbackIAmHumanV2C2"
+  callback-expired.call="bindedCallbackIExpiredV2C2($event)"
+  value.bind="notARobotV2C2"
+></recaptcha-v2></textarea>
             </div>
 
-            <recaptcha-v2 if.bind="renderedWithDelay" value.bind="notARobotV2C3"></recaptcha-v2>
-            <span>Delayed rendering (After at least one recaptcha was loaded).</span>
-            <span if.bind="notARobotV2C3">Not a Robot!</span>
-            <span if.bind="!notARobotV2C3">Be gone Robot!</span>
+            <span>Using global (string name) custom callback, see console.</span>
+            <recaptcha-v2 sitekey.bind="recaptchaV2" callback="callbackIAmHumanV2C2"></recaptcha-v2>
           </div>
+          <div class="col-md-6">
+              <div>
+                <textarea class="codemirror"><recaptcha-v2
+    sitekey.bind="recaptchaV2"
+    callback.call="bindedCallbackIAmHumanV2C4($event)"
+    value.bind="notARobotV2C4"
+  ></recaptcha-v2></textarea>
+              </div>
+  
+              <span>Using local (callback.call) custom callback, see console.</span>
+              <recaptcha-v2 sitekey.bind="recaptchaV2" callback.call="bindedCallbackIAmHumanV2C4($event)"></recaptcha-v2>
+            </div>
         </div>
     </div>
-    <div class="container-fluid" if.bind="!isRemoveAll">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="container" if.bind="!isRemoveAll">
         <div class="row">
-            <h2>V2 - Invisible</h2>
+          <div class="col-md-12">
+              <h2>V2 - Invisible</h2>
+            <hr>
+          </div>
         </div>
         <div class="row">
-          <div class="col-md-4">  
+          <div class="col-md-6">  
             <recaptcha-v2-invisible auto.bind="isAuto" size="invisible" value.bind="notARobotV2IC1"></recaptcha-v2-invisible>
             <span if.bind="notARobotV2IC1">Not a Robot!</span>
             <span if.bind="!notARobotV2IC1">Be gone Robot!</span>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <recaptcha-v2-invisible id.bind="idV2IC2" sitekey.bind="recaptchaV2Invisible" callback="callbackIAmHumanV2IC2" size="invisible"></recaptcha-v2-invisible>
             <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishExecuteV2IC2()">trigger</button>.</span>
             <span>Custom callback, see console.</span>
           </div>
-          <div class="col-md-4">  
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">  
             <recaptcha-v2-invisible id.bind="idV2IC3" size="invisible" value.bind="notARobotV2IC3"></recaptcha-v2-invisible>
             <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishExecuteV2IC3()">trigger</button>.</span>
             <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishResetV2IC3()">reset</button>.</span>
@@ -109,23 +141,41 @@
           </div>
         </div>
     </div>
-    <div class="container-fluid" if.bind="!isRemoveAll">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="container" if.bind="!isRemoveAll">
         <div class="row">
-            <h2>V3</h2>
+          <div class="col-md-12">
+              <h2>V3</h2>
+            <hr>
+          </div>
         </div>
         <div class="row">
-          <div class="col-md-4">  
+          <div class="col-md-6">  
             <recaptcha value.bind="notARobotv3_1" auto.bind="isAuto"></recaptcha>
             <span if.bind="notARobotv3_1">Not a Robot!</span>
             <span if.bind="!notARobotv3_1">Be gone Robot!</span>
           </div>
-           <div class="col-md-4">
+           <div class="col-md-6">
             <recaptcha id.bind="idV3C2" sitekey.bind="recaptcha" value.bind="notARobotv3_2" action="login"></recaptcha>
             <span>Custom <button click.trigger="publishExecuteV3C2()" class="btn btn-sm btn-primary">trigger</button>.</span>
             <span if.bind="notARobotv3_2">Not a Robot!</span>
             <span if.bind="!notARobotv3_2">Be gone Robot!</span>
           </div>
-          <div class="col-md-4" if.bind="renderedWithDelay">  
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" if.bind="renderedWithDelay">  
             <recaptcha value.bind="notARobotv3_3" action="social" auto="1"></recaptcha>
             <span>Delayed rendering (After at least one recaptcha was loaded).</span>
             <span if.bind="notARobotv3_3">Not a Robot!</span>

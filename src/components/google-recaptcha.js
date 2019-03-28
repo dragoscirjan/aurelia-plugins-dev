@@ -32,6 +32,9 @@ export class GoogleRecaptcha extends Component {
     window.callbackIAmHumanV2IC2 = () => {
       console.log('I am human (invisible)!'); // eslint-disable-line no-console
     };
+    window.callbackIAmHumanV2C4 = () => {
+      console.log('I am human no more!'); // eslint-disable-line no-console
+    };
   }
 
   get isAuto() {
@@ -44,6 +47,16 @@ export class GoogleRecaptcha extends Component {
 
   get isRemoveAll() {
     return this.checked.filter(v => v === 'remove-all').length;
+  }
+
+  bindedCallbackIAmHumanV2C4($event) {
+    console.log(`I am human! My token is ${this.notARobotV2C4}`); // eslint-disable-line no-console
+    console.log($event); // eslint-disable-line no-console
+  }
+
+  bindedCallbackIExpiredV2C2($event) {
+    console.log('I am human no more!'); // eslint-disable-line no-console
+    console.log($event); // eslint-disable-line no-console
   }
 
   publishExecuteV2IC2() {
