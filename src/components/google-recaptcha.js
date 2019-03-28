@@ -26,15 +26,15 @@ export class GoogleRecaptcha extends Component {
   }
 
   bind(...args) {
-    window.callbackIAmHumanV2C2 = ($event) => {
+    window.callbackIAmHumanV2C2 = $event => {
       console.log('I am human!'); // eslint-disable-line no-console
       console.log($event); // eslint-disable-line no-console
     };
-    window.callbackIAmHumanV2IC2 = ($event) => {
+    window.callbackIAmHumanV2IC2 = $event => {
       console.log('I am human (invisible)!'); // eslint-disable-line no-console
       console.log($event); // eslint-disable-line no-console
     };
-    window.callbackIAmHumanV2C4 = ($event) => {
+    window.callbackIAmHumanV2C4 = $event => {
       console.log('I am human no more!'); // eslint-disable-line no-console
       console.log($event); // eslint-disable-line no-console
     };
