@@ -77,7 +77,6 @@
               <textarea class="codemirror"><recaptcha-v2
   sitekey.bind="recaptchaV2"
   callback="callbackIAmHumanV2C2"
-  callback-expired.call="bindedCallbackIExpiredV2C2($event)"
   value.bind="notARobotV2C2"
 ></recaptcha-v2></textarea>
             </div>
@@ -90,6 +89,7 @@
                 <textarea class="codemirror"><recaptcha-v2
     sitekey.bind="recaptchaV2"
     callback.call="bindedCallbackIAmHumanV2C4($event)"
+    callback-expired.call="bindedCallbackIExpiredV2C4($event)"
     value.bind="notARobotV2C4"
   ></recaptcha-v2></textarea>
               </div>
@@ -115,15 +115,26 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">  
+          <div class="col-md-6">
+            <div>
+              <textarea class="codemirror"><recaptcha-v2-invisible
+  auto.bind="isAuto"
+  size="invisible"
+  value.bind="notARobotV2IC1"
+></recaptcha-v2-invisible></textarea>
+            </div>
+
+            <span>Will trigger only when auto="true".</span>
             <recaptcha-v2-invisible auto.bind="isAuto" size="invisible" value.bind="notARobotV2IC1"></recaptcha-v2-invisible>
             <span if.bind="notARobotV2IC1">Not a Robot!</span>
             <span if.bind="!notARobotV2IC1">Be gone Robot!</span>
           </div>
-          <div class="col-md-6">
-            <recaptcha-v2-invisible id.bind="idV2IC2" sitekey.bind="recaptchaV2Invisible" callback="callbackIAmHumanV2IC2" size="invisible"></recaptcha-v2-invisible>
-            <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishExecuteV2IC2()">trigger</button>.</span>
-            <span>Custom callback, see console.</span>
+          <div class="col-md-6">  
+            <recaptcha-v2-invisible id.bind="idV2IC3" size="invisible" value.bind="notARobotV2IC3"></recaptcha-v2-invisible>
+            <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishExecuteV2IC3()">trigger</button>.</span>
+            <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishResetV2IC3()">reset</button>.</span>
+            <span if.bind="notARobotV2IC3">Not a Robot!</span>
+            <span if.bind="!notARobotV2IC3">Be gone Robot!</span>
           </div>
         </div>
         <div class="row">
@@ -132,12 +143,33 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">  
-            <recaptcha-v2-invisible id.bind="idV2IC3" size="invisible" value.bind="notARobotV2IC3"></recaptcha-v2-invisible>
-            <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishExecuteV2IC3()">trigger</button>.</span>
-            <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishResetV2IC3()">reset</button>.</span>
-            <span if.bind="notARobotV2IC3">Not a Robot!</span>
-            <span if.bind="!notARobotV2IC3">Be gone Robot!</span>
+          <div class="col-md-6">
+            <div>
+              <textarea class="codemirror"><recaptcha-v2-invisible
+  id.bind="idV2IC2"
+  sitekey.bind="recaptchaV2Invisible"
+  callback="callbackIAmHumanV2IC2"
+  size="invisible"
+></recaptcha-v2-invisible></textarea>
+            </div>
+
+            <span>Custom <a href="javascript:;" click.trigger="publishExecuteV2IC2()">trigger</a>.</span>
+            <span>Using local (callback.call) custom callback, see console.</span>
+            <recaptcha-v2-invisible id.bind="idV2IC2" sitekey.bind="recaptchaV2Invisible" callback="callbackIAmHumanV2IC2" size="invisible"></recaptcha-v2-invisible>
+          </div>
+          <div class="col-md-6">
+            <div>
+              <textarea class="codemirror"><recaptcha-v2-invisible
+  id.bind="idV2IC4"
+  sitekey.bind="recaptchaV2Invisible"
+  callback.call="bindedCallbackIAmHumanV2IC4($event)"
+  size="invisible"
+></recaptcha-v2-invisible></textarea>
+            </div>
+
+            <span>Custom <a href="javascript:;" click.trigger="publishExecuteV2IC4()">trigger</a>.</span>
+            <span>Using global (string name) custom callback, see console.</span>
+            <recaptcha-v2-invisible id.bind="idV2IC4" sitekey.bind="recaptchaV2Invisible" callback.call="bindedCallbackIAmHumanV2IC4($event)" size="invisible"></recaptcha-v2-invisible>
           </div>
         </div>
     </div>
