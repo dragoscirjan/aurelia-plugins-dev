@@ -129,10 +129,17 @@
             <span if.bind="notARobotV2IC1">Not a Robot!</span>
             <span if.bind="!notARobotV2IC1">Be gone Robot!</span>
           </div>
-          <div class="col-md-6">  
+          <div class="col-md-6">
+            <div>
+              <textarea class="codemirror"><recaptcha-v2-invisible
+  id.bind="idV2IC3"
+  size="invisible"
+  value.bind="notARobotV2IC3"
+></recaptcha-v2-invisible></textarea>
+            </div>
+            <span>Custom <a href="javascript:;" click.trigger="publishExecuteV2IC3()">trigger</a>.</span>
+            <span>Custom <a href="javascript:;" click.trigger="publishResetV2IC3()">reset</a>.</span>
             <recaptcha-v2-invisible id.bind="idV2IC3" size="invisible" value.bind="notARobotV2IC3"></recaptcha-v2-invisible>
-            <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishExecuteV2IC3()">trigger</button>.</span>
-            <span>Custom <button class="btn btn-sm btn-primary" click.trigger="publishResetV2IC3()">reset</button>.</span>
             <span if.bind="notARobotV2IC3">Not a Robot!</span>
             <span if.bind="!notARobotV2IC3">Be gone Robot!</span>
           </div>
@@ -189,14 +196,30 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">  
+          <div class="col-md-6">
+            <div>
+              <textarea class="codemirror"><recaptcha
+  value.bind="notARobotv3_1"
+  auto.bind="isAuto"
+></recaptcha></textarea>
+            </div>
+
             <recaptcha value.bind="notARobotv3_1" auto.bind="isAuto"></recaptcha>
             <span if.bind="notARobotv3_1">Not a Robot!</span>
             <span if.bind="!notARobotv3_1">Be gone Robot!</span>
           </div>
-           <div class="col-md-6">
+          <div class="col-md-6">
+            <div>
+              <textarea class="codemirror"><recaptcha
+  id.bind="idV3C2"
+  sitekey.bind="recaptcha"
+  value.bind="notARobotv3_2"
+  action="login"
+></recaptcha></textarea>
+            </div>
+
+            <span>Custom <a href="javascript:;" click.trigger="publishExecuteV3C2()">trigger</a>.</span>
             <recaptcha id.bind="idV3C2" sitekey.bind="recaptcha" value.bind="notARobotv3_2" action="login"></recaptcha>
-            <span>Custom <button click.trigger="publishExecuteV3C2()" class="btn btn-sm btn-primary">trigger</button>.</span>
             <span if.bind="notARobotv3_2">Not a Robot!</span>
             <span if.bind="!notARobotv3_2">Be gone Robot!</span>
           </div>
@@ -207,9 +230,18 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6" if.bind="renderedWithDelay">  
-            <recaptcha value.bind="notARobotv3_3" action="social" auto="1"></recaptcha>
+          <div class="col-md-6">
+            <div>
+              <textarea class="codemirror"><recaptcha
+  if.bind="renderedWithDelay"
+  value.bind="notARobotv3_3"
+  action="social"
+  auto="1"
+></recaptcha></textarea>
+            </div>
+
             <span>Delayed rendering (After at least one recaptcha was loaded).</span>
+            <recaptcha if.bind="renderedWithDelay" value.bind="notARobotv3_3" action="social" auto="1"></recaptcha>
             <span if.bind="notARobotv3_3">Not a Robot!</span>
             <span if.bind="!notARobotv3_3">Be gone Robot!</span>
           </div>

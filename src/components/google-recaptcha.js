@@ -72,6 +72,7 @@ export class GoogleRecaptcha extends Component {
   }
 
   publishExecuteV2IC3() {
+    console.log(`grecaptcha:execute:${this.idV2IC3}`); // eslint-disable-line no-console
     this.events.publish(`grecaptcha:execute:${this.idV2IC3}`);
   }
 
@@ -88,6 +89,7 @@ export class GoogleRecaptcha extends Component {
   }
 
   publishResetV2IC3() {
+    console.log(`grecaptcha:reset:${this.idV2IC3}`); // eslint-disable-line no-console
     this.events.publish(`grecaptcha:reset:${this.idV2IC3}`);
   }
 }
