@@ -33,4 +33,4 @@ npm-debug.log
 /src/environment.js
 /src/environment.ts
 
-/src/resources/elements/aurelia-*
+# /src/resources/elements/aurelia-*

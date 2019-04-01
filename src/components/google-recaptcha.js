@@ -1,8 +1,9 @@
 import environment from '../environment';
 import { Component } from '../resources/component';
 
-import { inject } from 'aurelia-framework';
+import { inject, LogManager } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { className } from 'amaranth-utils';
 
 @inject(EventAggregator)
 export class GoogleRecaptcha extends Component {
@@ -15,6 +16,7 @@ export class GoogleRecaptcha extends Component {
     super();
 
     this.events = events;
+    this.logger = LogManager.getLogger(className(this));
 
     this.recaptchaV2 = environment.siteKeys.v2;
     this.recaptchaV2Invisible = environment.siteKeys.v2i;
@@ -44,13 +46,27 @@ export class GoogleRecaptcha extends Component {
     return this.checked.filter(v => v === 'auto').length;
   }
 
-  get isRemoveOne() {
-    return this.checked.filter(v => v === 'remove-one').length;
+  executeSimpleV2i() {
+    this.logger.debug(`Calling grecaptcha:execute:${this.idSimpleV2i}`);
+    this.events.publish(`grecaptcha:execute:${this.idSimpleV2i}`);
   }
 
-  get isRemoveAll() {
-    return this.checked.filter(v => v === 'remove-all').length;
+  executeSimpleV3() {
+    this.logger.debug(`Calling grecaptcha:execute:${this.idSimpleV3}`);
+    this.events.publish(`grecaptcha:execute:${this.idSimpleV3}`);
   }
+
+  resetSimpleV2() {
+    this.logger.debug(`Calling grecaptcha:reset:${this.idSimpleV2i}`);
+    this.events.publish(`grecaptcha:reset:${this.idSimpleV2}`);
+  }
+
+  resetSimpleV2i() {
+    this.logger.debug(`Calling grecaptcha:reset:${this.idSimpleV2i}`);
+    this.events.publish(`grecaptcha:reset:${this.idSimpleV2i}`);
+  }
+
+  // under this line everything is deprecated
 
   bindedCallbackIAmHumanV2C4($event) {
     console.log(`I am human! My token is ${$event.token}`); // eslint-disable-line no-console
@@ -82,10 +98,6 @@ export class GoogleRecaptcha extends Component {
 
   publishExecuteV3C2() {
     this.events.publish(`grecaptcha:execute:${this.idV3C2}`);
-  }
-
-  publishResetV2C1() {
-    this.events.publish(`grecaptcha:reset:${this.idV2C1}`);
   }
 
   publishResetV2IC3() {
