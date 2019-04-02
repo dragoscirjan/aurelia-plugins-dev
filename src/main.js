@@ -22,5 +22,7 @@ export function configure(aurelia) {
     aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
   }
 
+  aurelia.use.plugin(PLATFORM.moduleName('aurelia-validation'));
+
   return aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
 }

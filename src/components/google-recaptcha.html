@@ -108,18 +108,39 @@
           <!-- v2 checkbox simple, just reset -->
           <div>
             <textarea class="codemirror"><recaptcha-v2
-    id.bind="idValidatorV2"
-    value.bind="objectV2.token"
-  ></recaptcha-v2></textarea>
+  id.bind="idValidateV2"
+  value.bind="tokenValidateV2"
+></recaptcha-v2></textarea>
           </div>
   
-          <span>Custom <a href='javascript:;' click.trigger="resetSimpleV2()">reset</a>.</span>
-          <recaptcha-v2 id.bind="idSimpleV2" value.bind="tokenSimpleV2"></recaptcha-v2>
+          <span>Custom <a href='javascript:;' click.trigger="resetValidateV2()">reset</a>.</span>
+          <br />
+          <span>Custom <a href='javascript:;' click.trigger="validate('validV2')">validate</a>.</span>
+          <recaptcha-v2 id.bind="idValidateV2" value.bind="tokenValidateV2"></recaptcha-v2>
   
-          <span if.bind="tokenSimpleV2" class="badge badge-success">Not a Robot!</span>
-          <span if.bind="!tokenSimpleV2" class="badge badge-danger">Be gone Robot!</span>
+          <span if.bind="tokenValidateV2" class="badge badge-success">Not a Robot!</span>
+          <span if.bind="!tokenValidateV2" class="badge badge-danger">Be gone Robot!</span>
+          <span if.bind="vResult.valid" class="badge badge-success">Valid</span>
+          <span if.bind="!vResult.valid" class="badge badge-danger">Invalid</span>
         </div>
         <div class="col-md-4">
+          <!-- v2 checkbox simple, just reset -->
+          <div>
+            <textarea class="codemirror"><recaptcha-v2-invisible
+  id.bind="idValidateV2i"
+  value.bind="tokenValidateV2i"
+></recaptcha-v2-invisible></textarea>
+          </div>
+  
+          <span>Custom <a href='javascript:;' click.trigger="execute(idValidateV2i)">execute</a>.</span>
+          <span>Custom <a href='javascript:;' click.trigger="reset(idValidateV2i)">reset</a>.</span><br />
+          <span>Custom <a href='javascript:;' click.trigger="validate('validV2i')">validate</a>.</span>
+          <recaptcha-v2-invisible id.bind="idValidateV2i" value.bind="tokenValidateV2i"></recaptcha-v2-invisible>
+  
+          <span if.bind="tokenValidateV2i" class="badge badge-success">Not a Robot!</span>
+          <span if.bind="!tokenValidateV2i" class="badge badge-danger">Be gone Robot!</span>
+          <span if.bind="vResult.valid" class="badge badge-success">Valid</span>
+          <span if.bind="!vResult.valid" class="badge badge-danger">Invalid</span>
         </div>
         <div class="col-md-4">
         </div>
