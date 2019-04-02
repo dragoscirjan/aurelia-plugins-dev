@@ -3,7 +3,7 @@ import { Component } from '../resources/component';
 
 import { inject, LogManager } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
-import {ValidationController, ValidationRules} from 'aurelia-validation';
+import { ValidationController, ValidationRules } from 'aurelia-validation';
 import { className } from 'amaranth-utils';
 
 @inject(EventAggregator, ValidationController)
@@ -37,9 +37,10 @@ export class GoogleRecaptcha extends Component {
     this.recaptcha = environment.siteKeys.v3;
 
     // Using ValidationController is not mandatory.
-    for (const name of ['tokenValidateV2', 'tokenValidateV2i'/*, 'tokenValidateV3'*/]) {
-      ValidationRules
-        .ensure(name).required().withMessage('Please verify the recaptcha.')
+    for (const name of ['tokenValidateV2', 'tokenValidateV2i' /*, 'tokenValidateV3'*/]) {
+      ValidationRules.ensure(name)
+        .required()
+        .withMessage('Please verify the recaptcha.')
         .on(this);
     }
 
@@ -73,7 +74,7 @@ export class GoogleRecaptcha extends Component {
     this.events.publish(`grecaptcha:execute:${id}`);
 
     if (!name) {
-      return new Promise((resolve) => resolve);
+      return new Promise(resolve => resolve);
     }
 
     return new Promise((resolve, reject) => {
