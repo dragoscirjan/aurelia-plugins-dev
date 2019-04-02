@@ -3,10 +3,10 @@ import { Component } from '../resources/component';
 
 import { inject, LogManager } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
-import { ValidationController, ValidationRules } from 'aurelia-validation';
+import { ValidationControllerFactory, ValidationRules } from 'aurelia-validation';
 import { className } from 'amaranth-utils';
 
-@inject(EventAggregator, ValidationController)
+@inject(EventAggregator, ValidationControllerFactory)
 export class GoogleRecaptcha extends Component {
   /** @var {Array} */
   checked = [];
@@ -25,11 +25,11 @@ export class GoogleRecaptcha extends Component {
     token: null
   };
 
-  constructor(events, validator) {
+  constructor(events, controllerFactory) {
     super();
 
     this.events = events;
-    this.validator = validator;
+    this.validator = controllerFactory.createForCurrentScope();
     this.logger = LogManager.getLogger(className(this));
 
     this.recaptchaV2 = environment.siteKeys.v2;
@@ -37,12 +37,11 @@ export class GoogleRecaptcha extends Component {
     this.recaptcha = environment.siteKeys.v3;
 
     // Using ValidationController is not mandatory.
-    for (const name of ['tokenValidateV2', 'tokenValidateV2i' /*, 'tokenValidateV3'*/]) {
-      ValidationRules.ensure(name)
-        .required()
-        .withMessage('Please verify the recaptcha.')
-        .on(this);
-    }
+    ValidationRules
+      .ensure('tokenValidateV2').required().withMessage('Please verify the V2 recaptcha.')
+      .ensure('tokenValidateV2i').required().withMessage('Please verify the V2i recaptcha.')
+      .ensure('tokenValidateV3').required().withMessage('Please verify the V3 recaptcha.')
+      .on(this);
 
     setTimeout(() => {
       this.renderedWithDelay = true;
@@ -54,40 +53,26 @@ export class GoogleRecaptcha extends Component {
    * @param {String} id
    * @param {String} name
    */
-  async execute(id, name = null) {
-    switch (name) {
-    case 'objectV2':
-      break;
-    case 'objectV2i':
-      id = this.idValidateV2i;
-      break;
-    case 'objectV3':
-      id = this.idValidateV3;
-      break;
-    default:
-      break;
-    }
-    if (!id) {
-      return;
-    }
-    this.logger.debug(`Calling grecaptcha:execute:${id}`);
-    this.events.publish(`grecaptcha:execute:${id}`);
+  async execute(token) {
+    const id = `id${token}`;
+    const value = `token${token}`;
 
-    if (!name) {
-      return new Promise(resolve => resolve);
-    }
+    this.logger.debug(`Calling grecaptcha:execute:${this[id] || token}`);
+    this.events.publish(`grecaptcha:execute:${this[id] || token}`);
 
     return new Promise((resolve, reject) => {
       // constantly check for token
       const interval = setInterval(() => {
-        if (this[name].token) {
+        if (this[value]) {
+          this.logger.debug(`Discovered value for this.${value}`, this[value]);
           resolve();
           clearInterval(interval);
         }
       }, 500);
       // to the above check for a certain amount of time, then fail
       setTimeout(() => {
-        if (interval) {
+        if (interval && !this[value]) {
+          this.logger.warn(`Search for this.${value} timed out`);
           clearInterval(interval);
           reject();
         }
@@ -95,37 +80,20 @@ export class GoogleRecaptcha extends Component {
     });
   }
 
-  executeSimpleV2i() {
-    this.execute(this.idSimpleV2i);
-  }
-
-  executeSimpleV3() {
-    this.execute(this.idSimpleV3);
-  }
-
   get isAuto() {
     return this.checked.filter(v => v === 'auto').length;
   }
 
-  reset(id) {
-    this.logger.debug(`Calling grecaptcha:reset:${id}`);
-    this.events.publish(`grecaptcha:reset:${id}`);
+  reset(token) {
+    const id = `id${token}`;
+    this.logger.debug(`Calling grecaptcha:reset:${this[id] || token}`);
+    this.events.publish(`grecaptcha:reset:${this[id] || token}`);
   }
 
-  resetSimpleV2() {
-    this.logger.debug(`Calling grecaptcha:reset:${this.idSimpleV2i}`);
-    this.events.publish(`grecaptcha:reset:${this.idSimpleV2}`);
-  }
-
-  resetSimpleV2i() {
-    this.logger.debug(`Calling grecaptcha:reset:${this.idSimpleV2i}`);
-    this.events.publish(`grecaptcha:reset:${this.idSimpleV2i}`);
-  }
-
-  async validate(name) {
+  async validate(token) {
     this.logger.debug('Attempting validation for:', this.tokenValidateV2, this.tokenValidateV2i, this.tokenValidateV3);
-    if (name !== 'validV2') {
-      await this.execute(null, name);
+    if (token !== 'ValidateV2') {
+      await this.execute(token);
     }
     try {
       this.vResult = await this.validator.validate();
