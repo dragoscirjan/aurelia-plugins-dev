@@ -95,6 +95,36 @@
       </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+          <hr>
+          <p>Simple reCAPTCHA plugins, using validators.</p>
+          <hr>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-4">
+          <!-- v2 checkbox simple, just reset -->
+          <div>
+            <textarea class="codemirror"><recaptcha-v2
+    id.bind="idValidatorV2"
+    value.bind="objectV2.token"
+  ></recaptcha-v2></textarea>
+          </div>
+  
+          <span>Custom <a href='javascript:;' click.trigger="resetSimpleV2()">reset</a>.</span>
+          <recaptcha-v2 id.bind="idSimpleV2" value.bind="tokenSimpleV2"></recaptcha-v2>
+  
+          <span if.bind="tokenSimpleV2" class="badge badge-success">Not a Robot!</span>
+          <span if.bind="!tokenSimpleV2" class="badge badge-danger">Be gone Robot!</span>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+
   </div>
 
 

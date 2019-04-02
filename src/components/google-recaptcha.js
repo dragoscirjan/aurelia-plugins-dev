@@ -12,6 +12,18 @@ export class GoogleRecaptcha extends Component {
 
   renderedWithDelay = false;
 
+  objectV2 = {
+    token: null
+  }
+
+  objectV2i = {
+    token: null
+  }
+
+  objectV3 = {
+    token: null
+  }
+
   constructor(events) {
     super();
 
@@ -25,21 +37,6 @@ export class GoogleRecaptcha extends Component {
     setTimeout(() => {
       this.renderedWithDelay = true;
     }, 5000);
-  }
-
-  bind(...args) {
-    window.callbackIAmHumanV2C2 = $event => {
-      console.log('I am human!'); // eslint-disable-line no-console
-      console.log($event); // eslint-disable-line no-console
-    };
-    window.callbackIAmHumanV2IC2 = $event => {
-      console.log('I am human (invisible)!'); // eslint-disable-line no-console
-      console.log($event); // eslint-disable-line no-console
-    };
-    window.callbackIAmHumanV2C4 = $event => {
-      console.log('I am human no more!'); // eslint-disable-line no-console
-      console.log($event); // eslint-disable-line no-console
-    };
   }
 
   get isAuto() {
@@ -67,6 +64,21 @@ export class GoogleRecaptcha extends Component {
   }
 
   // under this line everything is deprecated
+
+  bind(...args) {
+    window.callbackIAmHumanV2C2 = $event => {
+      console.log('I am human!'); // eslint-disable-line no-console
+      console.log($event); // eslint-disable-line no-console
+    };
+    window.callbackIAmHumanV2IC2 = $event => {
+      console.log('I am human (invisible)!'); // eslint-disable-line no-console
+      console.log($event); // eslint-disable-line no-console
+    };
+    window.callbackIAmHumanV2C4 = $event => {
+      console.log('I am human no more!'); // eslint-disable-line no-console
+      console.log($event); // eslint-disable-line no-console
+    };
+  }
 
   bindedCallbackIAmHumanV2C4($event) {
     console.log(`I am human! My token is ${$event.token}`); // eslint-disable-line no-console
