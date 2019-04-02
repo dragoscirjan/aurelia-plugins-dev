@@ -14,15 +14,15 @@ export class GoogleRecaptcha extends Component {
 
   objectV2 = {
     token: null
-  }
+  };
 
   objectV2i = {
     token: null
-  }
+  };
 
   objectV3 = {
     token: null
-  }
+  };
 
   constructor(events) {
     super();
