@@ -37,10 +37,15 @@ export class GoogleRecaptcha extends Component {
     this.recaptcha = environment.siteKeys.v3;
 
     // Using ValidationController is not mandatory.
-    ValidationRules
-      .ensure('tokenValidateV2').required().withMessage('Please verify the V2 recaptcha.')
-      .ensure('tokenValidateV2i').required().withMessage('Please verify the V2i recaptcha.')
-      .ensure('tokenValidateV3').required().withMessage('Please verify the V3 recaptcha.')
+    ValidationRules.ensure('tokenValidateV2')
+      .required()
+      .withMessage('Please verify the V2 recaptcha.')
+      .ensure('tokenValidateV2i')
+      .required()
+      .withMessage('Please verify the V2i recaptcha.')
+      .ensure('tokenValidateV3')
+      .required()
+      .withMessage('Please verify the V3 recaptcha.')
       .on(this);
 
     setTimeout(() => {
