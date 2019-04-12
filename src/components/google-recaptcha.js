@@ -92,9 +92,8 @@ export class GoogleRecaptcha extends Component {
 
   async validate(token) {
     this.logger.debug('Attempting validation for:', this.tokenValidateV2, this.tokenValidateV2i, this.tokenValidateV3);
-    if (token !== 'ValidateV2') {
-      await this.execute(token);
-    }
+    await this.execute('ValidateV2i');
+    await this.execute('ValidateV3');
     try {
       this.vResult = await this.validator.validate();
       console.log(this.vResult);

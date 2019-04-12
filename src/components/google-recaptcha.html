@@ -25,6 +25,8 @@
   </div>
 
   <div class="container">
+    <!-- BEGIN Container -->
+
     <div class="row">
       <div class="col-md-4">
         <h3>reCAPTCHA v2</h3>
@@ -78,7 +80,7 @@
           <span if.bind="!tokenSimpleV2i" class="badge badge-danger">Be gone Robot!</span>
       </div>
       <div class="col-md-4">
-        <!-- v2 invisible simple, just reset -->
+        <!-- v3 invisible simple, just reset -->
         <div>
           <textarea class="codemirror"><recaptcha
   id.bind="idSimpleV3"
@@ -96,83 +98,222 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-          <hr>
-          <p>Simple reCAPTCHA plugins, using validators.</p>
-          <hr>
-        </div>
+      <div class="col-md-12">
+        <hr>
+        <p>Simple reCAPTCHA plugins, using validators.</p>
+        <hr>
       </div>
+    </div>
   
-      <div class="row" validation-errors.bind="validationErrors">
-        <div class="col-md-4">
-          <!-- v2 checkbox validate -->
-          <div>
-            <textarea class="codemirror"><recaptcha-v2
-  id.bind="idValidateV2"
-  value.bind="tokenValidateV2 & validate"
+    <div class="row" validation-errors.bind="validationErrors">
+      <div class="col-md-4">
+        <!-- v2 checkbox validate -->
+        <div>
+          <textarea class="codemirror"><recaptcha-v2
+id.bind="idValidateV2"
+value.bind="tokenValidateV2 & validate"
 ></recaptcha-v2></textarea>
-          </div>
-  
-          <span>Custom <a href='javascript:;' click.trigger="reset('ValidateV2')">reset</a>.</span>
-          <br />
-          <span>Custom <a href='javascript:;' click.trigger="validate('ValidateV2')">validate</a>.</span>
-          <recaptcha-v2 id.bind="idValidateV2" value.bind="tokenValidateV2 & validate"></recaptcha-v2>
-  
-          <span if.bind="tokenValidateV2" class="badge badge-success">Not a Robot!</span>
-          <span if.bind="!tokenValidateV2" class="badge badge-danger">Be gone Robot!</span>
-          <span if.bind="vResult.valid" class="badge badge-success">Valid</span>
-          <span if.bind="!vResult.valid" class="badge badge-danger">Invalid</span>
         </div>
-        <div class="col-md-4">
-          <!-- v2 invisible validate -->
-          <div>
-            <textarea class="codemirror"><recaptcha-v2-invisible
+
+        <span>Custom <a href='javascript:;' click.trigger="reset('ValidateV2')">reset</a>.</span>
+        <recaptcha-v2 id.bind="idValidateV2" value.bind="tokenValidateV2 & validate"></recaptcha-v2>
+
+        <span if.bind="tokenValidateV2" class="badge badge-success">Not a Robot!</span>
+        <span if.bind="!tokenValidateV2" class="badge badge-danger">Be gone Robot!</span>
+        <span if.bind="vResult.valid" class="badge badge-success">Valid</span>
+        <span if.bind="!vResult.valid" class="badge badge-danger">Invalid</span>
+      </div>
+      <div class="col-md-4">
+        <!-- v2 invisible validate -->
+        <div>
+          <textarea class="codemirror"><recaptcha-v2-invisible
   id.bind="idValidateV2i"
   value.bind="tokenValidateV2i & validate"
 ></recaptcha-v2-invisible></textarea>
-          </div>
-  
-          <span>Custom <a href='javascript:;' click.trigger="execute('ValidateV2i')">execute</a>.</span>
-          <span>Custom <a href='javascript:;' click.trigger="reset('')">reset</a>.</span><br />
-          <span>Custom <a href='javascript:;' click.trigger="validate('ValidateV2i')">validate</a>.</span>
-          <recaptcha-v2-invisible id.bind="idValidateV2i" value.bind="tokenValidateV2i & validate"></recaptcha-v2-invisible>
-  
-          <span if.bind="tokenValidateV2i" class="badge badge-success">Not a Robot!</span>
-          <span if.bind="!tokenValidateV2i" class="badge badge-danger">Be gone Robot!</span>
-          <span if.bind="vResult.valid" class="badge badge-success">Valid</span>
-          <span if.bind="!vResult.valid" class="badge badge-danger">Invalid</span>
         </div>
-        <div class="col-md-4">
-          <!-- v3 validate -->
-          <div>
-            <textarea class="codemirror"><recaptcha
+
+        <span>Custom <a href='javascript:;' click.trigger="execute('ValidateV2i')">execute</a>.</span>
+        <span>Custom <a href='javascript:;' click.trigger="reset('')">reset</a>.</span>
+        <recaptcha-v2-invisible id.bind="idValidateV2i" value.bind="tokenValidateV2i & validate"></recaptcha-v2-invisible>
+
+        <span if.bind="tokenValidateV2i" class="badge badge-success">Not a Robot!</span>
+        <span if.bind="!tokenValidateV2i" class="badge badge-danger">Be gone Robot!</span>
+        <span if.bind="vResult.valid" class="badge badge-success">Valid</span>
+        <span if.bind="!vResult.valid" class="badge badge-danger">Invalid</span>
+      </div>
+      <div class="col-md-4">
+        <!-- v3 validate -->
+        <div>
+          <textarea class="codemirror"><recaptcha
   id.bind="idValidateV3"
   value.bind="tokenValidateV3 & validate"
 ></recaptcha></textarea>
+        </div>
+
+        <span>Custom <a href='javascript:;' click.trigger="execute('ValidateV3')">execute</a>.</span>
+        <recaptcha id.bind="idValidateV3" value.bind="tokenValidateV3 & validate"></recaptcha>
+
+        <span if.bind="tokenValidateV3" class="badge badge-success">Not a Robot!</span>
+        <span if.bind="!tokenValidateV3" class="badge badge-danger">Be gone Robot!</span>
+        <span if.bind="vResult.valid" class="badge badge-success">Valid</span>
+        <span if.bind="!vResult.valid" class="badge badge-danger">Invalid</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary" href='javascript:;' click.trigger="validate()">Validate</button>
+        <ul if.bind="validationErrors">
+            <li repeat.for="error of vResult.results">
+                ${error.message}
+            </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+        <p>Automated reCAPTCHA plugins.</p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <!-- v2 checkbox auto, just reset -->
+        <p>V2 Checkbox is not auto triggered.</p> 
+      </div>
+      <div class="col-md-4">
+        <!-- v2 invisible auto, just reset -->
+        <div>
+            <textarea class="codemirror"><recaptcha-v2-invisible
+  auto.bind="isAuto"
+  id.bind="idAutoV2i"
+  value.bind="tokenAutoV2i"
+></recaptcha-v2-invisible></textarea>
           </div>
-  
-          <span>Custom <a href='javascript:;' click.trigger="execute('ValidateV3')">execute</a>.</span><br />
-          <span>Custom <a href='javascript:;' click.trigger="validate('ValidateV3')">validate</a>.</span>
-          <recaptcha id.bind="idValidateV3" value.bind="tokenValidateV3 & validate"></recaptcha>
-  
-          <span if.bind="tokenValidateV3" class="badge badge-success">Not a Robot!</span>
-          <span if.bind="!tokenValidateV3" class="badge badge-danger">Be gone Robot!</span>
-          <span if.bind="vResult.valid" class="badge badge-success">Valid</span>
-          <span if.bind="!vResult.valid" class="badge badge-danger">Invalid</span>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <!-- <ul if.bind="vResult.results"> -->
-          <ul if.bind="validationErrors">
-              <li repeat.for="error of vResult.results">
-                  ${error.message}
-              </li>
-          </ul>
-        </div>
-      </div>
+          <span>Custom <a href='javascript:;' click.trigger="reset('AutoV2i')">reset</a>.</span>
+          <recaptcha-v2-invisible auto.bind="isAuto" id.bind="idAutoV2i" value.bind="tokenAutoV2i"></recaptcha-v2-invisible>
 
+          <span if.bind="tokenAutoV2i" class="badge badge-success">Not a Robot!</span>
+          <span if.bind="!tokenAutoV2i" class="badge badge-danger">Be gone Robot!</span>
+      </div>
+      <div class="col-md-4">
+        <!-- v3 invisible auto, just reset -->
+        <div>
+          <textarea class="codemirror"><recaptcha
+  auto.bind="isAuto"
+  id.bind="idAutoV3"
+  value.bind="tokenAutoV3"
+></recaptcha></textarea>
+        </div>
+
+        <!-- <span>Custom <a href='javascript:;' click.trigger="reset('AutoV3')">reset</a>.</span> -->
+        <recaptcha auto.bind="isAuto" id.bind="idAutoV3" value.bind="tokenAutoV3"></recaptcha>
+
+        <span if.bind="tokenAutoV3" class="badge badge-success">Not a Robot!</span>
+        <span if.bind="!tokenAutoV3" class="badge badge-danger">Be gone Robot!</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+        <p>Delayed rendering (after at least one recaptcha was loaded).</p>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <!-- v2 checkbox hidden, just reset -->
+        <div>
+          <textarea class="codemirror"><recaptcha-v2
+  if.bind="renderedWithDelay"
+  id.bind="idHiddenV2"
+  value.bind="tokenHiddenV2"
+></recaptcha-v2></textarea>
+        </div>
+
+        <span>Custom <a href='javascript:;' click.trigger="reset('HiddenV2')">reset</a>.</span>
+        <recaptcha-v2 if.bind="renderedWithDelay" id.bind="idHiddenV2" value.bind="tokenHiddenV2"></recaptcha-v2>
+        <div class="row" if.bind="!renderedWithDelay">
+          <div class="col-md-12">
+              <div class="spinner">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+          </div>
+        </div>
+
+        <span if.bind="tokenHiddenV2" class="badge badge-success">Not a Robot!</span>
+        <span if.bind="!tokenHiddenV2" class="badge badge-danger">Be gone Robot!</span>
+      </div>
+      <div class="col-md-4">
+        <!-- v2 invisible hidden, just reset -->
+        <div>
+            <textarea class="codemirror"><recaptcha-v2-invisible
+  if.bind="renderedWithDelay"
+  id.bind="idHiddenV2i"
+  value.bind="tokenHiddenV2i"
+></recaptcha-v2-invisible></textarea>
+          </div>
+
+          <span>Custom <a href='javascript:;' click.trigger="execute('HiddenV2i')">execute</a>.</span>
+          <span>Custom <a href='javascript:;' click.trigger="reset('HiddenV2i')">reset</a>.</span>
+          <recaptcha-v2-invisible if.bind="renderedWithDelay" id.bind="idHiddenV2i" value.bind="tokenHiddenV2i"></recaptcha-v2-invisible>
+          <div class="row" if.bind="!renderedWithDelay">
+            <div class="col-md-12">
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+            </div>
+          </div>
+
+          <span if.bind="tokenHiddenV2i" class="badge badge-success">Not a Robot!</span>
+          <span if.bind="!tokenHiddenV2i" class="badge badge-danger">Be gone Robot!</span>
+      </div>
+      <div class="col-md-4">
+        <!-- v3 invisible hidden, just reset -->
+        <div>
+          <textarea class="codemirror"><recaptcha
+  if.bind="renderedWithDelay"
+  id.bind="idHiddenV3"
+  value.bind="tokenHiddenV3"
+></recaptcha></textarea>
+        </div>
+
+        <span>Custom <a href='javascript:;' click.trigger="execute('HiddenV3')">execute</a>.</span>
+        <!-- <span>Custom <a href='javascript:;' click.trigger="reset('HiddenV3')">reset</a>.</span> -->
+        <recaptcha if.bind="renderedWithDelay" id.bind="idHiddenV3" value.bind="tokenHiddenV3"></recaptcha>
+        <div class="row" if.bind="!renderedWithDelay">
+          <div class="col-md-12">
+              <div class="spinner">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+          </div>
+        </div>
+
+        <span if.bind="tokenHiddenV3" class="badge badge-success">Not a Robot!</span>
+        <span if.bind="!tokenHiddenV3" class="badge badge-danger">Be gone Robot!</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+        <hr>
+      </div>
+    </div>
+
+    <!-- END Container -->
   </div>
 
 
